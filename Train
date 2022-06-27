@@ -15,9 +15,10 @@ public class Train2 {
 
             List<String> commandLine = Arrays.stream(sc.nextLine().split(" ")).collect(Collectors.toList());
             String add = commandLine.get(0);
-            String addWagons = commandLine.get(1);
+            
             int passengers = 0;
             if (add.equals("Add")){
+                String addWagons = commandLine.get(1);
                 wagons.add(String.valueOf(addWagons));
             }else{
                  passengers = Integer.parseInt(add);
