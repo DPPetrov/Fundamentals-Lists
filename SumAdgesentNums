@@ -15,7 +15,7 @@ public class SumAdjEqualNums {
             if (first == second){
                 sum += first + second;
                 numsList.set(i, sum);
-                numsList.remove(numsList.get(i+1));
+                numsList.remove(i+1);
                 i =-1;
             }
 
