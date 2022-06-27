@@ -7,7 +7,7 @@ public class GausTrick {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         List<Integer> numsList = Arrays.stream(sc.nextLine().split(" ")).map(Integer::parseInt).collect(Collectors.toList());
-        for (int i = 0; i < numsList.size() / 2; i++) {
+        for (int i = 0; i < numsList.size() - 1; i++) {
             int firstNum = numsList.get(i);
             int lastNum = numsList.get(numsList.size()-1);
             numsList.set(i, firstNum +lastNum);
