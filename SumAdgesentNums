@@ -1,3 +1,4 @@
+import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
@@ -6,12 +7,12 @@ import java.util.stream.Collectors;
 public class SumAdjEqualNums {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        List<Integer> numsList = Arrays.stream(sc.nextLine().split(" ")).map(Integer::parseInt).collect(Collectors.toList());
+        List<Double> numsList = Arrays.stream(sc.nextLine().split(" ")).map(Double::parseDouble).collect(Collectors.toList());
 
         for (int i = 0; i < numsList.size() - 1; i++) {
-            int sum = 0;
-            int first = numsList.get(i);
-            int second = numsList.get(i+1);
+            double sum = 0;
+            double first = numsList.get(i);
+            double second = numsList.get(i+1);
             if (first == second){
                 sum += first + second;
                 numsList.set(i, sum);
@@ -21,8 +22,10 @@ public class SumAdjEqualNums {
 
         }
 
-        for(int el : numsList){
-            System.out.print(el + " ");
+        for(double el : numsList){
+            DecimalFormat df = new DecimalFormat("0.#");
+            String formattednum = df.format(el);
+            System.out.print(formattednum + " ");
         }
     }
 }
