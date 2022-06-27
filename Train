@@ -10,22 +10,44 @@ public class Train2 {
         List<String> wagons = Arrays.stream(sc.nextLine().split(" ")).collect(Collectors.toList());
         int maxCapacity = Integer.parseInt(sc.nextLine());
         String command = sc.nextLine();
+        boolean hasSpace = false;
+        int totalPassengers = 0;
 
         while (!command.equals("end")) {
 
             List<String> commandLine = Arrays.stream(sc.nextLine().split(" ")).collect(Collectors.toList());
             String add = commandLine.get(0);
-            
+
             int passengers = 0;
             if (add.equals("Add")){
                 String addWagons = commandLine.get(1);
                 wagons.add(String.valueOf(addWagons));
+                continue;
             }else{
                  passengers = Integer.parseInt(add);
             }
+                    //32 54 21 12 4 0 23 + 10 + 0
+                    //30 10 75
+            for (int i = 0; i < wagons.size() ; i++) {
+                int currentPassengers = Integer.parseInt(wagons.get(i));
+                            totalPassengers = currentPassengers + passengers;
 
-            System.out.println();
-            command = sc.nextLine();
+                            if (totalPassengers < 75 ){
+                                wagons.set(i, String.valueOf(totalPassengers));
+                                }else {
+                                    int remainingPassengers = Math.abs(75 - totalPassengers);
+                                        wagons.set(i+1, remainingPassengers + wagons.get(i + 1));
+                                    }
+
+                command = sc.nextLine();
+                    }
+
+
+            }
+
+           for(String el : wagons){
+               System.out.print(el + " ");
+           }
         }
     }
-}
+
