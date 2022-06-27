@@ -1,0 +1,30 @@
+import java.util.Arrays;
+import java.util.List;
+import java.util.Scanner;
+import java.util.stream.Collectors;
+
+public class Train2 {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        List<String> wagons = Arrays.stream(sc.nextLine().split(" ")).collect(Collectors.toList());
+        int maxCapacity = Integer.parseInt(sc.nextLine());
+        String command = sc.nextLine();
+
+        while (!command.equals("end")) {
+
+            List<String> commandLine = Arrays.stream(sc.nextLine().split(" ")).collect(Collectors.toList());
+            String add = commandLine.get(0);
+            String addWagons = commandLine.get(1);
+            int passengers = 0;
+            if (add.equals("Add")){
+                wagons.add(String.valueOf(addWagons));
+            }else{
+                 passengers = Integer.parseInt(add);
+            }
+
+            System.out.println();
+            command = sc.nextLine();
+        }
+    }
+}
