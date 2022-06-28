@@ -24,12 +24,29 @@ public class Train2 {
               int passengers = Integer.parseInt(commandLine.get(0));
 
                for (int i = 0; i < wagons.size() -1; i++) {
-                   int currentWagon = Integer.parseInt(wagons.get(i));
-                   if (passengers >= 75 && currentWagon == 0){
+                   int paxInWagon = Integer.parseInt(wagons.get(i));
+
+                   if (paxInWagon == 0 && passengers >= maxCapacity){
                        wagons.set(i, String.valueOf(passengers));
+                   }else if (paxInWagon == maxCapacity && passengers < maxCapacity){
+                       int totalPax = paxInWagon + passengers;
+                        if (totalPax <= maxCapacity){
+                           wagons.set(i, String.valueOf(totalPax));
+                           continue;
+                        }
+                   }else if (paxInWagon < maxCapacity){
+                       int totalPax = paxInWagon + passengers;
+                       if (totalPax <= maxCapacity){
+                           wagons.set(i, String.valueOf(totalPax));
+                       }
+
                    }
                }
                command = sc.nextLine();
+           }
+
+           for(String el : wagons){
+               System.out.print(el + " ");
            }
         }
     }
