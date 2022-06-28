@@ -11,44 +11,25 @@ public class Train2 {
         int maxCapacity = Integer.parseInt(sc.nextLine());
         String command = sc.nextLine();
 
-        int totalPassengers = 0;
+           while (!command.equals("end")){
+               List<String> commandLine = Arrays.stream(command.split(" ")).collect(Collectors.toList());
+               int addWagons = 0;
 
-        while (!command.equals("end")) {
-
-            List<String> commandLine = Arrays.stream(sc.nextLine().split(" ")).collect(Collectors.toList());
-            String add = commandLine.get(0);
-
-            int passengers = 0;
-            if (add.equals("Add")){
-                int addWagons =Integer.parseInt(commandLine.get(1));
-                wagons.add(addWagons);
-                continue;
-            }else{
-                 passengers = Integer.parseInt(add);
-            }
-                    //32 54 21 12 4 0 23 + 10 + 0
-                    //30 10 75
-            for (int i = 0; i < wagons.size() -1; i++) {
-                int currentPassengers = Integer.parseInt(wagons.get(i));
-                            totalPassengers = currentPassengers + passengers;
-
-                                if (currentPassengers < maxCapacity && totalPassengers < maxCapacity){
-                                   // totalPassengers = currentPassengers + passengers;
-                                    wagons.set(i, String.valueOf(totalPassengers));
-                                    i =-1;
-
-                                }else{
-                                    totalPassengers = Math.abs(totalPassengers - maxCapacity);
-                                    wagons.set(i+1, String.valueOf(totalPassengers) + String.valueOf(wagons.get(i+1)));
-                                }
-                command = sc.nextLine();
+                    if (commandLine.get(0).equals("Add")) {
+                        addWagons = Integer.parseInt(commandLine.get(1));
+                             wagons.add(String.valueOf(addWagons));
+                             command = sc.nextLine();
+                             continue;
                     }
+              int passengers = Integer.parseInt(commandLine.get(0));
 
-
-            }
-
-           for(String el : wagons){
-               System.out.print(el + " ");
+               for (int i = 0; i < wagons.size() -1; i++) {
+                   int currentWagon = Integer.parseInt(wagons.get(i));
+                   if (passengers >= 75 && currentWagon == 0){
+                       wagons.set(i, String.valueOf(passengers));
+                   }
+               }
+               command = sc.nextLine();
            }
         }
     }
