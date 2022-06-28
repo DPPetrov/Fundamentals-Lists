@@ -38,6 +38,7 @@ public class Train2 {
                        int totalPax = paxInWagon + passengers;
                        if (totalPax <= maxCapacity){
                            wagons.set(i, String.valueOf(totalPax));
+                           break;
                        }
 
                    }
