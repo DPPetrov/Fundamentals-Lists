@@ -29,7 +29,7 @@ public class HouseParty {
                     if (names.contains(commandList[0])){
                         names.remove(commandList[0]);
                     }else{
-                        System.out.println(commandList[0] + " is not on the list!");
+                        System.out.println(commandList[0] + " is not in the list!");
                     }
                     break;
             }
