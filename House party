@@ -18,12 +18,12 @@ public class HouseParty {
             if (commandList[2].equals("going!") && !names.contains(commandList[0])){
                 names.add(commandList[0]);
 
-            }else if (commandList[2]. equals("not") && names.contains(commandList[0])){
+            }else if (commandList[2]. equals("not") && !names.contains(commandList[0])){
                 System.out.println(commandList[0] + " is not in the list!");
-                names.remove(commandList[0]);
+                
 
             }else if (commandList[2].equals("going!") && names.contains(commandList[0])){
-                System.out.println(commandList[2] + " is already in the list!");
+                names.remove(commandList[0]);
 
             }
         }
