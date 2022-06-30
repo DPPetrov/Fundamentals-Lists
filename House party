@@ -15,21 +15,28 @@ public class HouseParty {
             String commands = sc.nextLine();
             String [] commandList = commands.split(" ");
 
-            if (commandList[2].equals("going!") && !names.contains(commandList[0])){
-                names.add(commandList[0]);
+            switch (commandList[2]){
 
-            }else if (commandList[2]. equals("not") && !names.contains(commandList[0])){
-                System.out.println(commandList[0] + " is not in the list!");
-                
+                case "going!":
+                    if (names.contains(commandList[0])){
+                        System.out.println(commandList[0] + " is already in the list!");
+                    }else{
+                        names.add(commandList[0]);
+                    }
+                    break;
 
-            }else if (commandList[2].equals("going!") && names.contains(commandList[0])){
-                names.remove(commandList[0]);
-
+                case "not":
+                    if (names.contains(commandList[0])){
+                        names.remove(commandList[0]);
+                    }else{
+                        System.out.println(commandList[0] + " is not on the list!");
+                    }
+                    break;
             }
         }
 
         for (String el : names){
-            System.out.print(el + " ");
+            System.out.println(el);
         }
     }
 }
