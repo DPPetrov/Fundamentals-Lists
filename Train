@@ -3,52 +3,41 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
-public class Train2 {
+
+public class Train3 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        List<String> wagons = Arrays.stream(sc.nextLine().split(" ")).collect(Collectors.toList());
+        List<Integer> wagons = Arrays.stream(sc.nextLine().split(" ")).map(Integer::parseInt).collect(Collectors.toList());
+
         int maxCapacity = Integer.parseInt(sc.nextLine());
+
         String command = sc.nextLine();
 
-           while (!command.equals("end")){
-               List<String> commandLine = Arrays.stream(command.split(" ")).collect(Collectors.toList());
-               int addWagons = 0;
+        while (!command.equals("end")){
+                String[] commandLine = command.split(" ");
 
-                    if (commandLine.get(0).equals("Add")) {
-                        addWagons = Integer.parseInt(commandLine.get(1));
-                             wagons.add(String.valueOf(addWagons));
-                             command = sc.nextLine();
-                             continue;
+            if (commandLine[0]. equals("Add")){
+                int addWagons = Integer.parseInt(commandLine[1]);
+                wagons.add(addWagons);
+            }else {
+                int addPax = Integer.parseInt(commandLine[0]);
+
+                for (int i = 0; i < wagons.size(); i++) {
+                    int currentPax = wagons.get(i);
+
+                    if (addPax + currentPax <=  maxCapacity){
+                        wagons.set(i, addPax + currentPax);
+                        break;
                     }
-              int passengers = Integer.parseInt(commandLine.get(0));
+                }
+            }
+            command = sc.nextLine();
+        }
 
-               for (int i = 0; i < wagons.size() -1; i++) {
-                   int paxInWagon = Integer.parseInt(wagons.get(i));
+        for (int el : wagons){
 
-                   if (paxInWagon == 0 && passengers >= maxCapacity){
-                       wagons.set(i, String.valueOf(passengers));
-                   }else if (paxInWagon == maxCapacity && passengers < maxCapacity){
-                       int totalPax = paxInWagon + passengers;
-                        if (totalPax <= maxCapacity){
-                           wagons.set(i, String.valueOf(totalPax));
-                           continue;
-                        }
-                   }else if (paxInWagon < maxCapacity){
-                       int totalPax = paxInWagon + passengers;
-                       if (totalPax <= maxCapacity){
-                           wagons.set(i, String.valueOf(totalPax));
-                           break;
-                       }
-
-                   }
-               }
-               command = sc.nextLine();
-           }
-
-           for(String el : wagons){
-               System.out.print(el + " ");
-           }
+            System.out.print(el + " ");
         }
     }
-
+}
