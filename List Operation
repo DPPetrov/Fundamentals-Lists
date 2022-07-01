@@ -1,0 +1,48 @@
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.Scanner;
+import java.util.stream.Collectors;
+
+public class ListOperations {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        List<Integer> numsList = Arrays.stream(sc.nextLine().split(" ")).map(Integer :: parseInt).collect(Collectors.toList());
+
+        String command = sc.nextLine();
+
+        while (!command.equals("End")){
+            String[] commandLine = sc.nextLine().split(" ");
+
+            switch (commandLine[0]){
+
+                case "Add":
+                    numsList.add(Integer.valueOf(commandLine[1]));
+                    break;
+
+                case "Insert":
+                    numsList.set(Integer.parseInt(commandLine[2]), Integer.valueOf(commandLine[1]));
+                    break;
+                case "Remove":
+                    numsList.remove(Integer.parseInt(commandLine[1]));
+                    break;
+                case "Shift":
+                    if (commandLine[1].equals(" left")){
+                        int index = Integer.parseInt(commandLine[1]);
+
+                            numsList.add(numsList.indexOf(index), Integer.valueOf(String.valueOf(commandLine[2])));
+
+
+                    }else if (commandLine[1].equals(" right")){
+                        int index = Integer.parseInt(commandLine[1]);
+                            numsList.add(numsList.indexOf(index), numsList.size() -1);
+                    }
+                    break;
+
+                default:
+                    System.out.println("Invalid index");
+            }
+        }
+    }
+}
