@@ -50,6 +50,8 @@ public class ListOperations {
                     numsList.remove(numsList.size() - 1);
                 }
             }
+            
+            command = sc.nextLine();
 
         }
 
