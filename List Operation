@@ -1,48 +1,69 @@
 
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
 public class ListOperations {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         Scanner sc = new Scanner(System.in);
 
-        List<Integer> numsList = Arrays.stream(sc.nextLine().split(" ")).map(Integer :: parseInt).collect(Collectors.toList());
+        List<Integer> numsList = Arrays.stream(sc.nextLine().split(" ")).map(Integer::parseInt).collect(Collectors.toList());
 
         String command = sc.nextLine();
 
-        while (!command.equals("End")){
-            String[] commandLine = sc.nextLine().split(" ");
+        //проверка, дали имаме необходимата команда
 
-            switch (commandLine[0]){
-
-                case "Add":
-                    numsList.add(Integer.valueOf(commandLine[1]));
-                    break;
-
-                case "Insert":
-                    numsList.set(Integer.parseInt(commandLine[2]), Integer.valueOf(commandLine[1]));
-                    break;
-                case "Remove":
-                    numsList.remove(Integer.parseInt(commandLine[1]));
-                    break;
-                case "Shift":
-                    if (commandLine[1].equals(" left")){
-                        int index = Integer.parseInt(commandLine[1]);
-
-                            numsList.add(numsList.indexOf(index), Integer.valueOf(String.valueOf(commandLine[2])));
-
-
-                    }else if (commandLine[1].equals(" right")){
-                        int index = Integer.parseInt(commandLine[1]);
-                            numsList.add(numsList.indexOf(index), numsList.size() -1);
-                    }
-                    break;
-
-                default:
+        while (!command.equals("End")) {
+            //проверка за различните команди
+            if (command.contains("Add")) {
+                int numToAdd = Integer.parseInt(command.split(" ")[1]);
+                numsList.add(numToAdd);
+            } else if (command.contains("Insert")) {
+                int numToInsert = Integer.parseInt(command.split(" ")[2]);
+                int index = Integer.parseInt(command.split(" ")[2]);
+                if (isIndexValid(index, numsList.size())) {
+                    numsList.add(index, numToInsert);
+                } else {
                     System.out.println("Invalid index");
+                }
+            } else if (command.equals("Remove")) {
+                int indexToRemove = Integer.parseInt(command.split(" ")[1]);
+                    if (isIndexValid(indexToRemove, numsList.size())){
+                        numsList.remove(indexToRemove);
+                    }else{
+                        System.out.println("Invalid index");
+                    }
+            } else if (command.contains("Shift left")) {
+                int timesToMove = Integer.parseInt(command.split(" ")[2]);
+                for (int i = 1; i <= timesToMove; i++) {
+                    int firstNum = numsList.get(0);
+                    numsList.add(firstNum);
+                    numsList.remove(0);
+                }
+            } else if (command.contains("Shift right")) {
+                int timesToMove = Integer.parseInt(command.split(" ")[2]);
+                for (int i = 1; i <= timesToMove; i++) {
+                    int lastNum = numsList.get(numsList.size() - 1);
+                    numsList.set(0, lastNum);
+                    numsList.remove(numsList.size() - 1);
+                }
             }
+
         }
+
+        for (int el : numsList){
+            System.out.print(el + " ");
+        }
+
     }
+    private static boolean isIndexValid ( int index, int size){
+        return index >= 0 && index <= size;
+    }
+
 }
+
+
+
+
