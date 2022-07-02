@@ -38,7 +38,7 @@ public class ListOperations {
                     }
             }else if (command.contains("Shift left")) {
                 int numShift = Integer.parseInt(command.split(" ")[2]); //Колко пъти ще преместим индекса
-                    for (int i = 1; i < numShift; i++) {
+                    for (int i = 1; i <= numShift; i++) {
                         int firstNum = numsList.get(0); //трябва ни числото на първия индекс
                             numsList.add(firstNum);
                                 numsList.remove(0);
