@@ -21,36 +21,37 @@ public class ListOperations {
                 int numToAdd = Integer.parseInt(command.split(" ")[1]);
                 numsList.add(numToAdd);
             } else if (command.contains("Insert")) {
-                int numToInsert = Integer.parseInt(command.split(" ")[2]);
-                int index = Integer.parseInt(command.split(" ")[2]);
-                if (isIndexValid(index, numsList.size())) {
-                    numsList.add(index, numToInsert);
-                } else {
-                    System.out.println("Invalid index");
-                }
-            } else if (command.equals("Remove")) {
+                int numToAdd = Integer.parseInt(command.split(" ")[1]);
+                int atIndex = Integer.parseInt(command.split(" ")[2]);
+
+                    if (isIndexValid(atIndex, numsList.size())){
+                        numsList.add(atIndex, numToAdd);
+                    }else{
+                        System.out.println("Invalid index");
+                    }
+            }else if (command.contains("Remove")){
                 int indexToRemove = Integer.parseInt(command.split(" ")[1]);
                     if (isIndexValid(indexToRemove, numsList.size())){
                         numsList.remove(indexToRemove);
                     }else{
                         System.out.println("Invalid index");
                     }
-            } else if (command.contains("Shift left")) {
-                int timesToMove = Integer.parseInt(command.split(" ")[2]);
-                for (int i = 1; i <= timesToMove; i++) {
-                    int firstNum = numsList.get(0);
-                    numsList.add(firstNum);
-                    numsList.remove(0);
+            }else if (command.contains("Shift left")) {
+                int numShift = Integer.parseInt(command.split(" ")[2]); //Колко пъти ще преместим индекса
+                    for (int i = 1; i < numShift; i++) {
+                        int firstNum = numsList.get(0); //трябва ни числото на първия индекс
+                            numsList.add(firstNum);
+                                numsList.remove(0);
                 }
+
             } else if (command.contains("Shift right")) {
-                int timesToMove = Integer.parseInt(command.split(" ")[2]);
-                for (int i = 1; i <= timesToMove; i++) {
-                    int lastNum = numsList.get(numsList.size() - 1);
-                    numsList.set(0, lastNum);
-                    numsList.remove(numsList.size() - 1);
-                }
+                int numToShift = Integer.parseInt(command.split(" ")[2]);
+                            for (int i = 1; i <=numToShift ; i++) {
+                                    int lastNum = numsList.get(numsList.size()-1);
+                                        numsList.set(0, lastNum);
+                            }
             }
-            
+
             command = sc.nextLine();
 
         }
@@ -60,11 +61,14 @@ public class ListOperations {
         }
 
     }
-    private static boolean isIndexValid ( int index, int size){
-        return index >= 0 && index <= size;
+
+    private static boolean isIndexValid(int atIndex, int size) {
+        return atIndex >= 0 && atIndex <= size-1;
     }
 
 }
+
+
 
 
 
