@@ -1,0 +1,35 @@
+import java.util.Arrays;
+import java.util.List;
+import java.util.Scanner;
+import java.util.stream.Collectors;
+
+public class BombNums {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        List<Integer> numsList = Arrays.stream(sc.nextLine().split(" ")).map(Integer::parseInt).collect(Collectors.toList());
+
+       // String[] trigger = sc.nextLine().split(" ");
+
+       int specialNum = Integer.parseInt(sc.nextLine().split(" ")[0]);
+       int power = Integer.parseInt(sc.nextLine().split(" ")[1]);
+
+        int specialNumIndex = 0;
+
+       //търсим specialNum
+
+        for (int i = 0; i < numsList.size(); i++) {
+            //проверяваме дали имаме специално число
+            //намираме индекса му, за да знаем откъде започваме да гърмим числа [1 + 2 2 + 4 + 2 2 + 2 9]
+            //трябва да махнем по две числа/цифри от двете страни на 4-та
+            if (numsList.contains(specialNum)){
+                  specialNumIndex = numsList.indexOf(specialNum);
+            }
+
+
+        }
+
+
+
+    }
+}
