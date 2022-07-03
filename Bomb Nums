@@ -5,31 +5,28 @@ import java.util.stream.Collectors;
 
 public class BombNums {
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
 
-        List<Integer> numsList = Arrays.stream(sc.nextLine().split(" ")).map(Integer::parseInt).collect(Collectors.toList());
+        List<String> elements = Arrays.stream(scanner.nextLine()
+                        .split("\\s+"))
+                .collect(Collectors.toList());
 
-       // String[] trigger = sc.nextLine().split(" ");
+        String[] data = scanner.nextLine().split("\\s+");
+        String bombNumber = data[0];
+        int power = Integer.parseInt(data[1]);
+        int sum = 0;
 
-       int specialNum = Integer.parseInt(sc.nextLine().split(" ")[0]);
-       int power = Integer.parseInt(sc.nextLine().split(" ")[1]);
+        while (elements.contains(bombNumber)){
+            int elementIndex = elements.indexOf(bombNumber);
 
-        int specialNumIndex = 0;
+            int left = Math.max(0, elementIndex - power);
+            int right = Math.min( elementIndex + power, elements.size() - 1);
 
-       //търсим specialNum
+            for (int i = right; i >= left; i--) {
+                elements.remove(i);
 
-        for (int i = 0; i < numsList.size(); i++) {
-            //проверяваме дали имаме специално число
-            //намираме индекса му, за да знаем откъде започваме да гърмим числа [1 + 2 2 + 4 + 2 2 + 2 9]
-            //трябва да махнем по две числа/цифри от двете страни на 4-та
-            if (numsList.contains(specialNum)){
-                  specialNumIndex = numsList.indexOf(specialNum);
             }
-
-
         }
-
-
-
+        System.out.println(elements.stream().mapToInt(Integer::parseInt).sum());
     }
 }
