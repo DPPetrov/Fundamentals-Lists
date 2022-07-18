@@ -13,12 +13,14 @@ public class ReplaceRepeatingChars {
             inputList.add(el);
         }
         System.out.println();
-        for (int i = 0; i <= inputList.size(); i++) {
+        for (int i = 0; i < inputList.size(); i++) {
             char currentChar = inputList.get(i);
             char nextChar = inputList.get(i+1);
 
             if (currentChar == nextChar){
                 inputList.set(i, nextChar);
+                inputList.remove(i);
+                i = -1;
             }
         }
 
