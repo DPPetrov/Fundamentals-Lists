@@ -12,6 +12,10 @@ public class ReverseNumbers {
             numbersToReverse[i] =  userInput;
         }
 
+        for (int i = numbersToReverse.length; i > 0 ; i--) {
+
+            System.out.println(numbersToReverse[i]);
+        }
 
     }
 }
