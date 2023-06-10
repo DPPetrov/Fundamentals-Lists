@@ -14,7 +14,7 @@ public class ReverseNumbers {
 
         for (int i = numbersToReverse.length; i > 0 ; i--) {
 
-            System.out.println(numbersToReverse[i]);
+            System.out.println(numbersToReverse[i - 1]);
         }
 
     }
