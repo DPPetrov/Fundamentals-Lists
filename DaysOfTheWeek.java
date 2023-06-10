@@ -11,6 +11,8 @@ public class DaysOfTheWeek {
         String[] days = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday"
         , "Saturday", "Sunday"};
 
+        System.out.println(days[day-1]);
+
 
 
 
