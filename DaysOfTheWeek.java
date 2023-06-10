@@ -13,7 +13,7 @@ public class DaysOfTheWeek {
 
         for (int i = 0; i < days.length - 1; i++) {
 
-            if (day <= 7) {
+            if (day <= i) {
                 System.out.println(days[i]);
             }else{
                 System.out.println("Invalid day!");

@@ -1,0 +1,75 @@
+
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Scanner;
+import java.util.stream.Collectors;
+
+public class ListOperations {
+    public static void main(String[] args) throws IOException {
+        Scanner sc = new Scanner(System.in);
+
+        List<Integer> numsList = Arrays.stream(sc.nextLine().split(" ")).map(Integer::parseInt).collect(Collectors.toList());
+
+        String command = sc.nextLine();
+
+        //проверка, дали имаме необходимата команда
+
+        while (!command.equals("End")) {
+            //проверка за различните команди
+            if (command.contains("Add")) {
+                int numToAdd = Integer.parseInt(command.split(" ")[1]);
+                numsList.add(numToAdd);
+            } else if (command.contains("Insert")) {
+                int numToAdd = Integer.parseInt(command.split(" ")[1]);
+                int atIndex = Integer.parseInt(command.split(" ")[2]);
+
+                    if (isIndexValid(atIndex, numsList.size())){
+                        numsList.add(atIndex, numToAdd);
+                    }else{
+                        System.out.println("Invalid index");
+                    }
+            }else if (command.contains("Remove")){
+                int indexToRemove = Integer.parseInt(command.split(" ")[1]);
+                    if (isIndexValid(indexToRemove, numsList.size())){
+                        numsList.remove(indexToRemove);
+                    }else{
+                        System.out.println("Invalid index");
+                    }
+            }else if (command.contains("Shift left")) {
+                int numShift = Integer.parseInt(command.split(" ")[2]); //Колко пъти ще преместим индекса
+                    for (int i = 1; i <= numShift; i++) {
+                        int firstNum = numsList.get(0); //трябва ни числото на първия индекс
+                            numsList.add(firstNum);
+                                numsList.remove(0);
+                }
+
+            } else if (command.contains("Shift right")) {
+                int numToShift = Integer.parseInt(command.split(" ")[2]);
+                            for (int i = 1; i <=numToShift ; i++) {
+                                    int lastNum = numsList.get(numsList.size()-1);
+                                        numsList.set(0, lastNum);
+                            }
+            }
+
+            command = sc.nextLine();
+
+        }
+
+        for (int el : numsList){
+            System.out.print(el + " ");
+        }
+
+    }
+
+    private static boolean isIndexValid(int atIndex, int size) {
+        return atIndex >= 0 && atIndex <= size-1;
+    }
+
+}
+
+
+
+
+
+

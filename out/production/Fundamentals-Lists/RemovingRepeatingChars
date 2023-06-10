@@ -1,0 +1,31 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+
+public class ReplaceRepeatingChars {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String input = sc.nextLine();
+        List<Character> inputList = new ArrayList<>();
+
+        for(char el : input.toCharArray()){
+            inputList.add(el);
+        }
+        System.out.println();
+        for (int i = 0; i < inputList.size(); i++) {
+            char currentChar = inputList.get(i);
+            char nextChar = inputList.get(i+1);
+
+            if (currentChar == nextChar){
+                inputList.set(i, nextChar);
+                inputList.remove(i);
+                i = -1;
+            }
+        }
+
+        for(char el : inputList){
+            System.out.printf("%s", el);
+        }
+    }
+}

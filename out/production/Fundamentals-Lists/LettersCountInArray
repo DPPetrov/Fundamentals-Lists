@@ -1,0 +1,35 @@
+public class LettersCountInArray {
+    public static void main(String[] args) {
+        String[] phrase = {
+                "GLIMMER", "MARVEL", "RUE", "CLOVE",
+                "THRESH", "FOXFACE", "CATO", "PEETA", "KATNISS"//we're counting the letters in the array
+        };
+
+        //another array to store the letters
+        //counter for each letter
+
+        int[] counter = new int[26];
+
+        for (int i = 0; i < phrase.length; i++) {
+            String currentPhrase = phrase[i];
+
+            char[] charArray = currentPhrase.toCharArray();
+
+            for (int j = 0; j < charArray.length; j++) {
+                char currentChar = charArray[j];
+
+                if (currentChar >= 'A' && currentChar <= 'Z') {
+                    counter[currentChar - 'A']++;
+                }
+            }
+        }
+
+        for (char i = 'A'; i <= 'Z'; i++) {
+            System.out.print(i + ": " + counter[i - 'A'] + "; " + " ");
+            if (i == 'M') {
+                System.out.println();
+            }
+        }
+        System.out.println();
+    }
+}
