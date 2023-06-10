@@ -9,12 +9,16 @@ public class DaysOfTheWeek {
         int day = Integer.parseInt(sc.nextLine());
 
         String[] days = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday"
-        , "Saturday", "Sunday"};
+                , "Saturday", "Sunday"};
 
-        System.out.println(days[day-1]);
+        if (day > days.length || day < 1) {
+            System.out.println("Invalid day!");
 
+        } else {
 
+            System.out.println(days[day - 1]);
 
+        }
 
     }
 }
