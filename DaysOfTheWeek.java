@@ -11,13 +11,9 @@ public class DaysOfTheWeek {
         String[] days = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday"
         , "Saturday", "Sunday"};
 
-        for (int i = 0; i < days.length - 1; i++) {
+        for (int i = day; i < days.length - 1; i++) {
 
-            if (day <= i) {
-                System.out.println(days[i]);
-            }else{
-                System.out.println("Invalid day!");
-            }
+
         }
     }
 }
